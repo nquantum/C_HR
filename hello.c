@@ -1,25 +1,22 @@
+/* 	copy input to output, replace tab > \t,
+	backspace \b, backslash \\ */ 
+
 #include <stdio.h>
-#define IN 	1
-#define OUT 0
 
 int main()
 {
-	int c, state;
+	int c;
 
-	state = OUT;
 	while ((c = getchar()) != EOF)
 	{
-		if (c == ' ' && state == OUT)
-		{
-			state = IN;
+		if (c == '\t')
+			printf("\\t");
+		else if (c == '\b')
+			printf("\\b");
+		else if (c == '\\')
+			printf("\\\\");
+		else
 			printf("%c", c);
-		}
-		if (c != ' ')
-		{
-			state = OUT;
-			printf("%c", c);
-		}
 	}
-
 	return 0;
 }

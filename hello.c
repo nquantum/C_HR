@@ -3,28 +3,38 @@
 
 #include <stdio.h>
 
-#define IN 	0
-#define OUT 1
+#define IN 			0
+#define OUT 		1
+#define MAX_WD		10
+#define HISTOGRAM 	30
 
 int main()
 {
-	int c, i, j, nc, state;
-	int ndigit[10];
+	int c, i, j, nc, ntotal, overflow, state;
+	int ndigit[11];
 
-	for (i = 0; i < 10; ++i)
-		ndigit[i] = 0;
-
-	state = OUT;
 	nc = 0;
+	ntotal = 0;
+	overflow = 0;
+	for (i = 0; i < MAX_WD; ++i)
+		ndigit[i] = 0;
+	state = OUT;
+
+	/* get no of ndigit[0-9], no of overflow */
 	while ((c = getchar()) != EOF)
 	{
 		if (c == ' ' || c == '\t' || c == '\n')
 		{
-			if (state == IN)
+			if (state == IN && nc > 0)
 			{
-				//printf("%3d", nc);
 				state = OUT;
-				++ndigit[nc];
+				if (nc <= MAX_WD)
+				{
+					++ndigit[nc-1];
+					++ntotal;
+				}
+				else 
+					++overflow;
 				nc = 0;
 			}		
 		}	
@@ -37,23 +47,25 @@ int main()
 			++nc;
 	}
 	
-/*	ndigit[0] = 0;
-	ndigit[1] = 1;
-	ndigit[2] = 2;
-	ndigit[3] = 3;
-	ndigit[4] = 4;
-	ndigit[5] = 5;
-	ndigit[6] = 6;
-	ndigit[7] = 5;
-	ndigit[8] = 10;
-	ndigit[9] = 20;	*/
+	/* show readed word & overflow */
+	printf("%d\n", ndigit[0]);
+	printf("%d\n", ndigit[1]);
+	printf("%d\n", ndigit[2]);
+	printf("%d\n", ndigit[3]);
+	printf("%d\n", ndigit[4]);
+	printf("%d\n", ndigit[5]);
+	printf("%d\n", ndigit[6]);
+	printf("%d\n", ndigit[7]);
+	printf("%d\n", ndigit[8]);
+	printf("%d\n", ndigit[9]);
+	printf("%d\n", overflow);
 
-	for (j = 0; j < 10; ++j)
+	/* print histogram horizontal */
+	for (j = 0; j < MAX_WD; ++j)
 	{
-		printf("%2d - ", j);
-		for (i = 0; i < ndigit[j]; ++i)
+		printf("%2d - ", j+1);
+		for (i = 0; i < ndigit[j]*HISTOGRAM/ntotal; ++i)
 			putchar('x');	
-//		printf("%4d", ndigit[j]);
 		putchar('\n');
 	}
 

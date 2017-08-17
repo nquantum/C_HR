@@ -6,12 +6,14 @@
 #define IN 			0
 #define OUT 		1
 #define MAX_WD		10
-#define HISTOGRAM 	30
+#define HISTOGRAM 	20
 
 int main()
 {
-	int c, i, j, nc, nmax, ncom, overflow, state;
-	int ndigit[11];
+	int c, i, j, nc, nmax, overflow, state;
+/*	int ncom; */
+	int ncom[MAX_WD];
+	int ndigit[MAX_WD];
 
 	/* init variable for nxt function */
 	for (i = 0; i < MAX_WD; ++i)
@@ -65,7 +67,7 @@ int main()
 	printf("%d\n", overflow);
 
 	/* print histogram horizontal */
-	for (j = 0; j < MAX_WD; ++j)
+/*	for (j = 0; j < MAX_WD; ++j)
 	{
 		printf("%2d - %3d:", j+1, ndigit[j]);
 		if (ndigit[j] > 0)
@@ -76,7 +78,34 @@ int main()
 				putchar('x');
 		}
 		putchar('\n');
+	}	*/
+
+	/* print vertical */
+	/* convert no to histogram */
+	for (i = 0; i < MAX_WD; ++i)
+		if (ndigit[i] > 0)
+		{
+			if ((ncom[i] = ndigit[i]*HISTOGRAM/nmax) <= 0)
+				ncom[i] = 1;
+		}
+		else
+			ncom[i] = 0;
+	/* write histogram */
+	for (i = HISTOGRAM; i > 0; --i)
+	{
+		for (j = 0; j < MAX_WD; ++j)
+		{
+			if (i <= ncom[j])
+				printf(" x ");
+			else
+				printf("   ");			
+		}
+		putchar('\n');
 	}
+	/* write topic */
+	for (i = 0; i < MAX_WD; ++i)
+		printf(" %1d ", i + 1);
+	putchar('\n');
 
 	return 0;
 }

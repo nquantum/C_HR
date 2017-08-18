@@ -22,3 +22,5 @@ float conv(int m)
 {
 	return (5.0/9.0) * (m-32);
 }
+
+/* master test */

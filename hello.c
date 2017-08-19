@@ -1,27 +1,23 @@
-/* 	Exercise 1-17 print all input lines that
-	longer than 80 characters */
+/* 	Exercise 1-19 function reverse */
 
 #include <stdio.h>
 #define MAXLINE 1000
 #define LIMIT 	5
 
 int getline(char line[], int m);
+void reverse(char to[], char from[]);
 
 int main()
 {
 	int i, len;
 	char line[MAXLINE];
+	char store[MAXLINE];
 
-
-	while ((len = getline(line, MAXLINE)) > 0)
-	{
-		for (i=2; line[len-i] == '1' || line[len-i] == '2'; ++i) /* p0o1p2 3\4n = 5 */
-		;
-		--i;
-		line[len-i] = '\n';
-		--i;
-		line[len-i] = '\0';
-		printf("%s",line);
+	while (getline(line, MAXLINE) > 0)
+	{	
+		printf("%s", line);
+		reverse(store, line);
+		printf("%s", store);
 	}	
 
 	return 0;
@@ -44,4 +40,22 @@ int getline(char s[], int lim)
 	s[j] = '\0';
 
 	return i;
+}
+
+void reverse(char to[], char from[])
+{
+	int i, j;
+
+	for (i = 0; from[i] != '\n'; ++i)
+		;
+	--i;
+
+	j = 0;
+	while (i > 0)
+	{
+		to[j] = from[i];
+		++j;
+		--i;
+	}
+	to[j] = from[i];
 }

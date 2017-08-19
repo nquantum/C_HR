@@ -9,15 +9,20 @@ int getline(char line[], int m);
 
 int main()
 {
-	int len;
+	int i, len;
 	char line[MAXLINE];
+
 
 	while ((len = getline(line, MAXLINE)) > 0)
 	{
-/*		printf("%d, %s", len, line); */
-		if (len > LIMIT)
-			printf("%s", line);
-	}
+		for (i=2; line[len-i] == '1' || line[len-i] == '2'; ++i) /* p0o1p2 3\4n = 5 */
+		;
+		--i;
+		line[len-i] = '\n';
+		--i;
+		line[len-i] = '\0';
+		printf("%s",line);
+	}	
 
 	return 0;
 }

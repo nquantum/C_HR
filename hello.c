@@ -1,26 +1,52 @@
-/* 	Exercise 1-15 use function for temp convert */
+/* 	Charpter 1-9 Character Array */
 
 #include <stdio.h>
+#define MAXLINE 1000
 
-#define UPPER	300
-#define STEP	20
-
-float conv(int fahr);
+int getline(char line[], int maxline);
+void copy(char to[], char from[]);
 
 int main()
 {
-	int i;
+	int len;
+	int max;
+	char line[MAXLINE];
+	char longest[MAXLINE];
 
-	for (i = 0; i <= UPPER; i = i + STEP)	
-/*		(printf("%d\n", i));	*/
-		printf("%3d\t%3.1f\n", i, conv(i));
+	max = 0;
+	while ((len = getline(line, MAXLINE)) > 0)
+		if (len > max)
+		{
+			max = len;
+			copy(longest, line);
+		}
+
+	if (max > 0)
+		printf("%s", longest);
 
 	return 0;
 }
 
-float conv(int m)
+int getline(char s[], int lim)
 {
-	return (5.0/9.0) * (m-32);
+	int c, i;
+
+	for (i=0; i<lim-1 && (c=getchar())!=EOF && c!='\n'; ++i)
+		s[i] = c;
+	if (c == '\n')
+	{
+		s[i] = '\n';
+		++i;
+	}
+	s[i] = '\0';
+	return i;
 }
 
-/* master test */
+void copy(char to[], char from[])
+{
+	int i;
+
+	i = 0;
+	while ((to[i] = from[i]) != '\0')
+		++i;
+}

@@ -1,115 +1,41 @@
-/* 	Exercise 1-21 function entab */
+/* 	Exercise 1-21 function entab by book */
 
 #include <stdio.h>
-#define MAXLINE 1000
-#define TAB 	8
 
-int getline(char line[], int m);
-void detab(char to[], char from[]);
+#define TAB 	8
 
 int main()
 {
-	int c, i, j, k, space, tab;
-	char line[MAXLINE];
-	char store[MAXLINE];
+	int c, nb, nt, pos;
 
-
-	while ((c = getline(line, MAXLINE)) > 0)
-	{
-/*		printf("%s<org\n", line); */
-
-		i = j = space = tab = 0;
-		while ((c = line[i]) != '\0')
+	nb = 0;
+	nt = 0;
+	for (pos = 1; (c = getchar()) != EOF; ++pos)
+		if (c == ' ')
 		{
-			if (c == ' ')
-			{				
-				while (line[i] == ' ')
-				{
-					if ((i % TAB == 0) && (space > 0))
-					{
-						++tab;
-						space = 0;
-					}
-					else
-					{
-						++space;
-					}
-					++i;
-				}
-
-				if (i % TAB == 0)
-				{
-					++tab;
-					space = 0;
-				}			
-				else if (tab > 0)
-					++space;
-
-				for (k = 0; k < tab; ++k, ++j)
-					store[j] = '\t';
-				for (k = 0; k < space; ++k, ++j)
-					store[j] = ' ';
-			}
+			if (pos % TAB != 0)
+				++nb;
 			else
 			{
-				store[j] = c;
-				++i;
-				++j;
+				nb = 0;
+				++nt;
 			}
-		}
-		store[j] = '\0';
-
-/*		printf("%s<mod\n", store); */
-	}
-
-	return 0;
-}
-
-int getline(char s[], int lim)
-{
-	int c, i, j;
-
-	for (i=0, j=0; (c=getchar())!=EOF && c!='\n'; ++i)
-		if (j < lim - 2)
-		{	
-			s[j] = c;
-			++j;
-		}
-	if (c == '\n')
-	{
-		s[j] = '\n';
-		++j;
-		++i;
-	}
-	s[j] = '\0';
-
-	return i;
-}
-
-void detab(char to[], char from[])
-{
-	int c, i, j, k;
-
-	i = j = k = 0;
-	while ((c = from[i]) != '\0')
-	{
-		if (c == '\t')
-		{
-			while (k <= j)
-				k = k + TAB + 1;
-			while (j < k)
-			{
-				to[j] = ' ';
-				++j;
-			}
-			i++;
-		}
+		}	
 		else
 		{
-			to[j] = c;
-			i++;
-			j++;
-		}		
-	}
-	to[j] = '\0';
+			for (; nt > 0; --nt)
+				putchar('\t');
+			if (c == '\t')
+				nb = 0;
+			else
+				for (; nb > 0; --nb)
+					putchar(' ');
+			putchar(c);
+			if (c == '\n')
+				pos = 0;
+			else if (c == '\t')
+				pos = pos + (TAB - (pos-1) % TAB) - 1;
+		}
+
+	return 0;
 }

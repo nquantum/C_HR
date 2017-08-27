@@ -1,41 +1,23 @@
-/* 	Exercise 1-21 function entab by book */
+/* 	Exercise 1-22 fold input */
 
 #include <stdio.h>
 
-#define TAB 	8
+int getline();
 
 int main()
 {
-	int c, nb, nt, pos;
 
-	nb = 0;
-	nt = 0;
-	for (pos = 1; (c = getchar()) != EOF; ++pos)
-		if (c == ' ')
-		{
-			if (pos % TAB != 0)
-				++nb;
+	while (getline() != 0;)
+	{
+		while -not end sentence-
+			read space , pos space_no
+			read word , pos word_no
+			if end word | end column
+				endword> show space, word
 			else
-			{
-				nb = 0;
-				++nt;
-			}
-		}	
-		else
-		{
-			for (; nt > 0; --nt)
-				putchar('\t');
-			if (c == '\t')
-				nb = 0;
-			else
-				for (; nb > 0; --nb)
-					putchar(' ');
-			putchar(c);
-			if (c == '\n')
-				pos = 0;
-			else if (c == '\t')
-				pos = pos + (TAB - (pos-1) % TAB) - 1;
-		}
-
+				end column> 
+				if 0space show word, \n at n-1
+				if >0space \n, 0space, move pos begin of word
+	}
 	return 0;
 }

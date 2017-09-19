@@ -3,6 +3,9 @@
 #include <stdio.h>
 
 #define MAX	1000
+
+void decomment(char a[]);
+
 int main()
 {
 	char store[MAX];
@@ -15,7 +18,14 @@ int main()
 		++i;
 	}
 	store[i] = '\0';
+
+	decomment(store);
 	printf("%s", store);
 
 	return 0;
+}
+
+void decomment(char in[])
+{
+
 }

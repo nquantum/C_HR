@@ -27,5 +27,11 @@ int main()
 
 void decomment(char in[])
 {
+	int i;
 
+	i = 0;
+	while (in[i] != '\0')
+	{
+		++i;
+	}
 }

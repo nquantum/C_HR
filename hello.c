@@ -4,11 +4,11 @@
 
 #define MAX	1000
 
-void decomment(char a[]);
+void decomment(char a[], char b[]);
 
 int main()
 {
-	char store[MAX];
+	char store[MAX], out[MAX];
 	int i, c;
 
 	i = 0;
@@ -19,19 +19,26 @@ int main()
 	}
 	store[i] = '\0';
 
-	decomment(store);
-	printf("%s", store);
+	decomment(store, out);
+	printf("%s", out);
 
 	return 0;
 }
 
-void decomment(char in[])
+void decomment(char in[], char out[])
 {
-	int i;
+	int i, j;
 
-	i = 0;
+	j = i = 0;
 	while (in[i] != '\0')
 	{
+/*		if (in[i] == '/' && in[i+1] == '*')
+			for (; in[i] == '*' && in[i+1] == '/'; ++i)
+				; 
+		else*/
+			out[j] = in[i];
 		++i;
+		++j;/* */
 	}
+	out[j] = '\0';
 }

@@ -32,13 +32,19 @@ void decomment(char in[], char out[])
 	j = i = 0;
 	while (in[i] != '\0')
 	{
-/*		if (in[i] == '/' && in[i+1] == '*')
-			for (; in[i] == '*' && in[i+1] == '/'; ++i)
-				; 
-		else*/
+		if (in[i] == '/' && in[i+1] == '*') /* check start comment */
+		{
+			for (; !((in[i] == '*') && (in[i+1] == '/')); ++i)
+				;
+			i += 2;
+		}
+		else
+		{
 			out[j] = in[i];
-		++i;
-		++j;/* */
+			++i;
+			++j;
+		}
+		
 	}
 	out[j] = '\0';
 }

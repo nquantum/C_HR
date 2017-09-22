@@ -31,5 +31,28 @@ int main()
 	printf("unsigned char MIN is: %d\n", test_u_char = 0);
 	printf("undigned char MAX is: %d\n", test_u_char = UCHAR_MAX);
 
+/* int signed unsigned */
+	printf("short MIN is: %d\n", test_short = SHRT_MIN);
+	printf("short MAX is: %d\n", test_short = SHRT_MAX);
+	printf("int MIN is: %d\n", test_int = INT_MIN);
+	printf("int MAX is: %d\n", test_int = INT_MAX);
+	printf("long MIN is: %d\n", test_long = LONG_MIN);
+	printf("long MAX is: %d\n", test_long = LONG_MAX);
+
+	printf("signed short MIN is: %d\n", test_s_short = SHRT_MIN);
+	printf("signed short MAX is: %d\n", test_s_short = SHRT_MAX);
+	printf("unsigned short MIN is: %d\n", test_u_short = 0);
+	printf("unsigned short MAX is: %d\n", test_u_short = USHRT_MAX);
+
+	printf("signed int MIN is: %d\n", test_s_int = INT_MIN);
+	printf("signed int MAX is: %d\n", test_s_int = INT_MAX);
+	printf("unsigned int MIN is: %u\n", test_u_int = 0);
+	printf("unsigned int MAX is: %u\n", test_u_int = UINT_MAX);
+
+	printf("signed long MIN is: %ld\n", test_s_long = LONG_MIN);
+	printf("signed long MAX is: %ld\n", test_s_long = LONG_MAX);
+	printf("unsigned long MIN is: %lu\n", test_u_long = 0);
+	printf("unsigned long MAX is: %lu\n", test_u_long = ULONG_MAX);
+
 	return 0;
 }

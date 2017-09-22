@@ -54,5 +54,7 @@ int main()
 	printf("unsigned long MIN is: %lu\n", test_u_long = 0);
 	printf("unsigned long MAX is: %lu\n", test_u_long = ULONG_MAX);
 
+	printf("signed char MAX is: %d\n", (char)((unsigned char) ~0 >> 1));
+
 	return 0;
 }

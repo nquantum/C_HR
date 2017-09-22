@@ -1,69 +1,35 @@
-/* 	Exercise 1-22 fold input */
+/* 	Exercise 2-1 range of type */
 
 #include <stdio.h>
-
-#define MAX			1000
-#define N 			19
-
-int getline(char input[], int limit);
-void cutline(char input[]);
+#include <limits.h>
+/* #include <float.h> */
 
 int main()
 {
-	char line[MAX];
+	char test_char;
+	short test_short;
+	int test_int;
+	long test_long;
 
-	while (getline(line, MAX) != 0)
-	{		
-		cutline(line);					
-	}
+	signed char test_s_char;
+	unsigned char test_u_char;
+
+	signed short test_s_short;
+	unsigned short test_u_short;
+
+	signed int test_s_int;
+	unsigned int test_u_int;
+
+	signed long test_s_long;
+	unsigned long test_u_long;
+
+/* char signed unsigned */
+	printf("char MIN is: %d\n", test_char = CHAR_MIN);
+	printf("char MAX is: %d\n", test_char = CHAR_MAX);
+	printf("signed char MIN is: %d\n", test_s_char = SCHAR_MIN);
+	printf("signed char MAX is: %d\n", test_s_char = SCHAR_MAX);
+	printf("unsigned char MIN is: %d\n", test_u_char = 0);
+	printf("undigned char MAX is: %d\n", test_u_char = UCHAR_MAX);
 
 	return 0;
-}
-
-int getline(char in[], int lim)
-{
-	int c, i;
-
-	i = 0;
-	while ((c = getchar()) != EOF)
-	{
-		if (i < lim)
-		{		
-			in[i] = c;
-			++i;
-		}
-	}
-	in[i] = '\0';
-
-/*	printf("%s", in);	*/
-
-	return i;
-}
-
-void cutline(char in[])
-{
-	int i;
-	int pos;  /* pos input */
-	int no; /* number of character */
-
-  	pos = no = 0;
-  	while (in[pos] != '\0')
-  	{
-    	if (no < N)
-    	{
-      		++no;
-      		++pos;
-    	}
-    	else
-    	{
-     		for (i = no; i > 0; --i)
-          		putchar(in[pos-i]);
-      		putchar('\n');
-      		no = 0;
-    	}
-  	}
-  	for (i = no; i > 0; --i)
-      putchar(in[pos-i]);
-
-  	return;
 }

@@ -1,33 +1,23 @@
-/* 	Exercise 2-5 write any(s1, s2) , return 1st location occurs of s2 */
+/* 	Exercise 2-6 write setbits(x,p,n,y) */
 
 #include <stdio.h>
 
-#define	MAX	100
-
-int any(char s1[], char s2[]);
+int setbits(int x, int p, int n, int y);
 
 int main()
 {
-	char s[MAX] = "abcdefghijklmnopqrstuvwxyz\n";
-	char test[MAX] = "1";
-
-	printf("%s", s);
-	printf("%s\n", test);
-	printf("%d\n", any(s, test));
+	int a = 0xFF;
+	printf("%d\n%d\n", a, setbits(a, 0xFF, 0, 0));
 
 	return 0;
 }
 
-int any(char in[], char comp[])
+int setbits(int x, int p, int n, int y)
 {
-	int i, pos;
+	int clrbits = 0xF0;
+	int setbits = 0;
 
-	for (pos = 0; in[pos] != '\0'; ++pos)
-	{
-		for (i = 0; comp[i] != '\0'; ++i)
-			if (in[pos] == comp[i])
-				return pos;
-	}
+	x = x & clrbits;
 
-	return -1;
+	return x;
 }

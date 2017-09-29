@@ -1,24 +1,21 @@
-/* 	Exercise 2-6 write setbits(x,p,n,y) */
+/* 	Exercise 2-7 write invert(x,p,n) */
 
 #include <stdio.h>
 
-int setbits(int x, int p, int n, int y);
+int invert(int x, int p, int n);
 
 int main()
 {
-	int a = 0xFF;
-	int b = 0xF9;
+	int a = 215;
+	int b = 235;
 
-	printf("%d\n%d\n", a, setbits(a, 2, 4, b));
+	printf("a = %d\nb = %d\n", a, b);
+	printf("compute = %d\n", invert(a, 2, 4));
 
 	return 0;
 }
 
-int setbits(int x, int p, int n, int y)
-{
-/*	int y_mod = y & ~(~0 << n);
-	int x_mod = x & ((~0 << p + n) | ~(~0 << p));
-
-	return x_mod | y_mod << p;*/
-	return (x & ((~0 << p + n) | ~(~0 << p))) | (y & ~(~0 << n)) << p;
+int invert(int x, int p, int n)
+{	
+	return x ^ ~(~0 << p + n) & (~0 << p);
 }

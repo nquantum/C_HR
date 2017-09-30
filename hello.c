@@ -1,21 +1,37 @@
-/* 	Exercise 2-7 write invert(x,p,n) */
+/* 	Exercise 2-8 write rightrot(x, n) rotate to the right of n bit  */
 
 #include <stdio.h>
+#include <limits.h>
 
-int invert(int x, int p, int n);
+unsigned int rightrot(unsigned int x, int n);
+int find_l(unsigned int x);
 
 int main()
 {
-	int a = 215;
-	int b = 235;
+	unsigned int x = 10;
+	int n = 4;
 
-	printf("a = %d\nb = %d\n", a, b);
-	printf("compute = %d\n", invert(a, 2, 4));
+/*	printf("uint_max %u\n", UINT_MAX);
+	printf("rotate time: %d\n", find_l(x));	*/
+	printf("%u\n%u\n", x, rightrot(x, n));
 
 	return 0;
 }
 
-int invert(int x, int p, int n)
-{	
-	return x ^ ~(~0 << p + n) & (~0 << p);
+unsigned int rightrot(unsigned int x, int n)
+{		
+	unsigned int x_tmp = x >> n;
+	int l = find_l(x);
+	unsigned int r_tmp = (x & ~(~0 << n)) << l - n;
+	return x_tmp | r_tmp;
+}
+
+int find_l(unsigned int x)
+{
+	int i =0;
+
+	for (x = x | ~0; x != 0; x = x >> 1)
+		++i;
+
+	return i;
 }

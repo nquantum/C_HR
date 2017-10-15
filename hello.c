@@ -1,20 +1,30 @@
-/* 	Exercise 2-9 write int lower(int c) using conditional expression */
+/* 	Exercise 3-1 binary search */
 
 #include <stdio.h>
 
-int lower(int c);
+int binsearch(int x, int v[], int n);
 
 int main()
 {
-	int c;
-
-	while ((c=getchar()) != EOF)
-		printf("%c", lower(c));
 
 	return 0;
 }
 
-int lower(int in)
-{	
-	return (in >= 'A' && in <= 'Z') ? in + 'a' - 'A' : in;
+int binsearch(int x, int v[], int n)
+{
+	int low, hight, mid;
+
+	low = 0;
+	high = n - 1;
+	while (low <= high) 
+	{
+		mid = (low+high) / 2;
+		if (x < v[mid])
+			high = mid - 1;
+		else if (x > v[mid])
+			low = mid + 1;
+		else 
+			return mid;		
+	}
+	return -1;
 }
